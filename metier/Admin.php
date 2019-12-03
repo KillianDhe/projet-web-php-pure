@@ -1,7 +1,7 @@
 <?php
 
 
-class Admin
+class Admin extends Visiteur
 {
     public $idAdmin;
     public $pass;

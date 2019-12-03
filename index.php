@@ -1,13 +1,12 @@
 <html><body>
 <?php
-/**
- * Created by PhpStorm.
- * User: kidherment
- * Date: 27/11/19
-* Time: 16:32
- */
-
-
-echo "lol";
+require "vue/Acceuil.php";
+/*if (isset(tab)) {
+    foreach ($tab as $news) {
+        echo "<a href =$news->url>$news<br>";
+    }
+}else{
+    echo "aucune news";
+}*/
 ?>
 </body></html>
