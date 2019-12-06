@@ -8,13 +8,66 @@
 
 class ControlAdmin
 {
-    /*try{
+
+    try{
+
+        $action=$GET_['action'];
+        switch($action)
+        {
+            case AjouterArticle:
+                AjouterArticle();
+                break;
+
+            case SupprimerArticle:
+                SupprimerArticle();
+                break;
+
+            case SeDeconnecter:
+                 SeDeconnecter();
+                 break;
+
+             default:
+                 $dVueErreur[]="erreur apppel php";
+                 require('erreur.php');
+                 break;
+
+        }
+
+        public function AjouterArticle()
+        {
+
+            $titre = $_POST['InTitre'];
+            $nauteur=$_POST['InNauteur'];
+            $pauteur=$_POST['InPauteur'];
+            $date=$_POST['InDate'];
+            $desc=$_POST['InDesc'];
+
+            $desc=
+
+
+            $m=new ModelGeneral();
+            $article=new Article(NULL,$desc,$titre,$date,$pauteur,$nauteur);
+            if ($m->mInsertArticle($article))
+                $message="Article ajoute";
+            else $message="article non ajouté";
+        }
+
+
+}
+
+
+
+
+
+
+
+/* try{
         $acrion = $
         switch($action){
          case delet:
 
         }
-    }catch(){*/
+    }catch(){
 
 public function ajoutterdata(){
 
@@ -26,6 +79,6 @@ public function ajoutterdata(){
         $m->insertnews($data);
     require['page.php'];
 
-}
+}*/
 
 }

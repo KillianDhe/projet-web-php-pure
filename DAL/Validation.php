@@ -16,6 +16,7 @@ class Validation {
         return $string;
     }
 
+
     /**
      * Vérifie si la valeur
      * est un int
