@@ -8,6 +8,7 @@ class Article
     private $date;
     private $prenomAuteur;
     private $nomAuteur;
+    private $id;
 
     /**
      * Article constructor.
@@ -17,13 +18,14 @@ class Article
      * @param $prenomAuteur
      * @param $nomAuteur
      */
-    public function __construct($texte, $titre, $date, $prenomAuteur, $nomAuteur)
+    public function __construct($id, $texte, $titre, $date, $prenomAuteur, $nomAuteur)
     {
         $this->texte = $texte;
         $this->titre = $titre;
         $this->date = $date;
         $this->prenomAuteur = $prenomAuteur;
         $this->nomAuteur = $nomAuteur;
+        $this->id = $id;
     }
 
     /**
@@ -85,7 +87,7 @@ class Article
     /**
      * @param mixed $prenomAuteur
      */
-    public function setPrenomAuteur($prenomAuteur): void
+    public function setPrenomAuteur(string $prenomAuteur): void
     {
         $this->prenomAuteur = $prenomAuteur;
     }
@@ -105,6 +107,10 @@ class Article
     public function setNomAuteur($nomAuteur): void
     {
         $this->nomAuteur = $nomAuteur;
+    }
+
+    public  function getId(int $id){
+        return $this->id;
     }
 
 
