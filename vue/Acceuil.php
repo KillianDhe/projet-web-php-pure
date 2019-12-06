@@ -8,5 +8,5 @@
  * Date: 03/12/2019
  * Time: 19:10
  */
-            echo 'mes couille';
+            echo 'page acceuil';
         ?>
