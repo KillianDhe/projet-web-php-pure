@@ -72,8 +72,9 @@ class ControlAdmin
             $date=$_POST['InDate'];
             $desc=$_POST['InDesc'];
 
+
             $m = new ModelGeneral();
-            $article = new Article(NULL,$desc,$titre,$date,$pAuteur,$nAuteur);
+            $article = new Article(0,$desc,$titre,$date,$pAuteur,$nAuteur);
             $m->mInsertArticle($article);
             $this->initView();
 

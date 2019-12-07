@@ -18,7 +18,7 @@ class Article
      * @param $prenomAuteur
      * @param $nomAuteur
      */
-    public function __construct(int $id, $texte, $titre, $date, $prenomAuteur, $nomAuteur)
+    public function __construct(int $id , $texte, $titre, $date, $prenomAuteur, $nomAuteur)
     {
         $this->texte = $texte;
         $this->titre = $titre;
