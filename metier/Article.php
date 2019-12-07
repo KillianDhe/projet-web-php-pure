@@ -18,7 +18,7 @@ class Article
      * @param $prenomAuteur
      * @param $nomAuteur
      */
-    public function __construct($id, $texte, $titre, $date, $prenomAuteur, $nomAuteur)
+    public function __construct(int $id, $texte, $titre, $date, $prenomAuteur, $nomAuteur)
     {
         $this->texte = $texte;
         $this->titre = $titre;
@@ -109,7 +109,7 @@ class Article
         $this->nomAuteur = $nomAuteur;
     }
 
-    public  function getId(int $id){
+    public  function getId(){
         return $this->id;
     }
 
