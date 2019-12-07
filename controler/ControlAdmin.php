@@ -37,9 +37,9 @@ class ControlAdmin
                     $this->modifArticle();
                     break;
 
-               /* case SeDeconnecter:
-                    SeDeconnecter();
-                    break;*/
+               case 'SeConnecter':
+                    $this->SeConnecter();
+                    break;
 
                 default:
                     /*$dVueErreur[] = "erreur apppel php";
@@ -72,6 +72,11 @@ class ControlAdmin
             $date=$_POST['InDate'];
             $desc=$_POST['InDesc'];
 
+            $titre=Validation::purify($titre);
+            $nAuteur=Validation::purify($nAuteur);
+            $pAuteur=Validation::purify($pAuteur);
+            $date=Validation::purify($date);
+            $desc=Validation::purify($desc);
 
             $m = new ModelGeneral();
             $article = new Article(0,$desc,$titre,$date,$pAuteur,$nAuteur);
@@ -114,6 +119,14 @@ class ControlAdmin
             $desc = $_POST['InDesc'];
             $id = $_POST['id'];
 
+            $titre=Validation::purify($titre);
+            $nAuteur=Validation::purify($nAuteur);
+            $pAuteur=Validation::purify($pAuteur);
+            $date=Validation::purify($date);
+            $desc=Validation::purify($desc);
+            $id=Validation::isInt($id);
+
+
             $m = new ModelGeneral();
             $article = new Article($id,$desc,$titre,$date,$pAuteur,$nAuteur);
             $m->reviseArticle($article);
@@ -121,37 +134,11 @@ class ControlAdmin
             $this->initView();
         }
 
-
-
+    public function SeConnecter()
+    {
+        //ne pas oublier de valider les champs
+        echo"ce n'est pas encore fait , parce qu'on doit attendre que le prof nous montre";
+    }
 
 
 }
-
-
-
-
-
-
-
-/* try{
-        $acrion = $
-        switch($action){
-         case delet:
-
-        }
-    }catch(){
-
-public function ajoutterdata(){
-
-    $titre = $_POST['titre'];
-    $url = $_POST['url'];
-    $titre = netooyage::titre($titre);
-    $url----;
-    $mdl = new model
-        $m->insertnews($data);
-    require['page.php'];
-
-}*/
-
-
-

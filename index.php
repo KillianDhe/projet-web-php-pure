@@ -8,8 +8,7 @@ require_once 'DAL/config.php';
 Autoload::charger();
 new ControlAdmin();
 
-
-
+require_once 'vue/Acceuil.php';
 /*if (isset(tab)) {
     foreach ($tab as $news) {
         echo "<a href =$news->url>$news<br>";
