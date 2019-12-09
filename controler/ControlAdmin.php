@@ -9,58 +9,68 @@
 class ControlAdmin
 {
 
-    public function __construct()
+    public function __construct($action)
     {
         global $rep;
-        try {
-            $action = NULL;
-             if(isset($_POST['action'])){
-                 $action = $_POST['action'];
+
+                 switch ($action) {
+                     case NULL :
+                         $this->mainView();
+                         break;
+
+                     case 'AjouterArticle':
+                         $this->AjouterArticle();
+                         break;
+
+                     case 'SupprimerArticle':
+                         $this->SupprimerArticle();
+                         break;
+
+                     case 'showArticle':
+                         $this->showArticleModif();
+                         break;
+                     case 'modifArticle' :
+                         $this->modifArticle();
+                         break;
+
+                     case 'SeConnecter':
+                         $this->SeConnecter();
+                         break;
+
+                     case 'loginPage' :
+                         $this->loginPage();
+                         break;
+                     case 'login' :
+                         $this->login();
+                         break;
+
+                     case 'logout' :
+                         $this->logout();
+                         break;
+
+
+                     default:
+                         /*$dVueErreur[] = "erreur apppel php";
+                         require('erreur.php');*/
+                         echo 'erreure form';
+                         break;
+
+                 }
              }
-            switch ($action) {
-                case NULL :
-                    $this->initView();
-                    break;
 
-                case 'AjouterArticle':
-                    $this->AjouterArticle();
-                    break;
 
-                case 'SupprimerArticle':
-                    $this->SupprimerArticle();
-                    break;
 
-                case 'showArticle':
-                    $this->showArticleModif();
-                    break;
-                case 'modifArticle' :
-                    $this->modifArticle();
-                    break;
-
-               case 'SeConnecter':
-                    $this->SeConnecter();
-                    break;
-
-                default:
-                    /*$dVueErreur[] = "erreur apppel php";
-                    require('erreur.php');*/
-                    echo 'erreure form';
-                    break;
-
-            }
-        }catch (PDOException $PDOException){
-            var_dump($PDOException);
-        }catch (Exception $exception) {
-            var_dump($exception);
-        }
-
-    }
-
-        public function initView($articleModif = NULL){
+        public function mainView($articleModif = NULL)
+        {
             global $rep;
             $model = new ModelGeneral();
             $articleList = $model->getAllArticle();
-            require_once $rep . 'vue/panelAdmin.php';
+
+            if (isset($_SESSION['login'])){
+                require_once $rep . 'vue/panelAdmin.php';
+                return;
+            }
+            require_once $rep . 'vue/Connexion.php';
         }
 
         public function AjouterArticle()
@@ -81,7 +91,7 @@ class ControlAdmin
             $m = new ModelGeneral();
             $article = new Article(0,$desc,$titre,$date,$pAuteur,$nAuteur);
             $m->mInsertArticle($article);
-            $this->initView();
+            $this->mainView();
 
         }
 
@@ -93,7 +103,7 @@ class ControlAdmin
 
             $model = new ModelGeneral();
             $model->removeArticleByID($id);
-            $this->initView();
+            $this->mainView();
         }
 
         public function showArticleModif(){
@@ -107,7 +117,7 @@ class ControlAdmin
 
 
 
-            $this->initView($articleModif);
+            $this->mainView($articleModif);
         }
 
         private function modifArticle(){
@@ -136,14 +146,50 @@ class ControlAdmin
             $article = new Article($id,$desc,$titre,$date,$pAuteur,$nAuteur);
             $m->reviseArticle($article);
 
-            $this->initView();
+            $this->mainView();
         }
 
-    public function SeConnecter()
-    {
-        //ne pas oublier de valider les champs
-        echo"ce n'est pas encore fait , parce qu'on doit attendre que le prof nous montre";
+
+
+    public function loginPage(){
+        global $rep;
+        require_once $rep . 'vue/Connexion.php';
     }
+
+    public function login()
+    {
+        if (isset($_POST['InEmail']) && isset($_POST['InPass'])){
+            $email = $_POST['InEmail'];
+            $pass = $_POST['InPass'];
+        }
+
+        if (!Validation::isEmail($email)) {
+            throw new Exception('c pas un email');
+        }
+        $m = new ModelGeneral();
+        $admin  = $m->getAdminByEmail($email);
+
+        if ($admin == null) {
+            throw new Exception('Mauvaise email');
+        }
+
+        if (!password_verify($pass,$admin->getMotDePasse())){
+            throw new Exception('Mauvais mdp');
+        }
+        $_SESSION['login'] = true;
+        $_SESSION['user'] = $admin;
+
+        $this->mainView();
+
+    }
+    public function logout(){
+        session_destroy();
+        unset($_SESSION);
+
+        $this->mainView();
+    }
+
+
 
 
 }

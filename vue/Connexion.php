@@ -11,29 +11,29 @@ require_once 'pageContent/header.php';
     <body>
     <div id="wrapperconnexion">
     <div  class="container-fluid">
-        <div class="row">
+
             <div class="card offset-1" style="width: 40rem;">
                 <div class="card-header"><h5>Connexion administrateur</h5></div>
                 <form class="card-body" method="post">
 
                     <div class="form-group">
-                        <label>Pseudo :</label>
-                        <input class="form-control" type="text" name="InPseudo">
+                        <label>Email :</label>
+                        <input class="form-control" placeholder="exemple@exemple.ex" type="email" name="InEmail">
                     </div>
 
                     <div class="form-group">
                         <label>Mot de passe :</label>
-                        <input class="form-control" type="password" name="InMotDePasse">
+                        <input class="form-control" type="password" name="InPass">
                     </div>
 
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Se connecter</button>
                     </div>
-                    <input type="hidden" name="action" value="SeConnecter">
+                    <input type="hidden" name="action" value="login">
 
                 </form>
             </div>
-        </div>
+
     </div>
     </body>
 

@@ -3,18 +3,17 @@
 
 class ControlVisiteur
 {
-    public function __construct()
+    public function __construct($action)
     {
         global $rep;
-        try {
-            $action = NULL;
-            if(isset($_POST['action'])){
-                $action = $_POST['action'];
-            }
+
+
             switch ($action) {
                 case NULL :
+                case 'publicPage':
                     $this->initView();
                     break;
+
 
                 case 'AjouterCommentaire':
                     $this->AjouterCommentaire();
@@ -29,17 +28,14 @@ class ControlVisiteur
                     break;
 
             }
-        }catch (PDOException $PDOException){
-            var_dump($PDOException);
-        }catch (Exception $exception) {
-            var_dump($exception);
-        }
+
 
     }
 
-    public function initView($articleModif = NULL){
+    public function initView(){
         global $rep;
         $model = new ModelGeneral();
+        $articleList = $model->getAllArticle();
         require_once $rep . 'vue/Acceuil.php';
    }
 

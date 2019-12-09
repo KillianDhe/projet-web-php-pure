@@ -7,6 +7,9 @@
             <li class="nav-item">
                 <a class="fas fa-sign-out-alt nav-link" style="font-size: 30px;" href="?action=logout" title="Disconnection"></a>
             </li>
+            <li class="nav-item">
+                <a  class="fas fa-sign-in-alt" style="font-size: 30px;" href="?action=loginPage" title="Login"></a>
+            </li>
         </ul>
     </div>
 </nav>

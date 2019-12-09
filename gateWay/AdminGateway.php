@@ -27,11 +27,14 @@ class AdminGateway
     }
 
     public function finAdminByEmail(string $mail){
-        $query = "SELECT nom, prenom, mail FROM Administrator WHERE pseudo = :mail";
+        $query = "SELECT pseudo,   nom, prenom, email, password FROM Administrator WHERE email = :mail";
 
         $this->connection->executeQuery($query, array(
             'mail' => array($mail,PDO::PARAM_STR)));
         return $this->connection->getResults();
     }
+
+
+
     //public function
 }
