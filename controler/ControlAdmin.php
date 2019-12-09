@@ -119,12 +119,17 @@ class ControlAdmin
             $desc = $_POST['InDesc'];
             $id = $_POST['id'];
 
+            if (! Validation::isInt($id)){
+                throw new Exception('c pas int');
+            }
+
+
             $titre=Validation::purify($titre);
             $nAuteur=Validation::purify($nAuteur);
             $pAuteur=Validation::purify($pAuteur);
             $date=Validation::purify($date);
             $desc=Validation::purify($desc);
-            $id=Validation::isInt($id);
+
 
 
             $m = new ModelGeneral();
