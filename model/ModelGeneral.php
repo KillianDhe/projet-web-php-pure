@@ -63,4 +63,11 @@ class ModelGeneral
         $artcileG = new ArticleGateWay(new Connection($dsn,$user,$pass));
         $artcileG->updateArticleById($article);
     }
+
+    public function insertCommentaire(Commentaire $commentaire){
+        global $dsn, $user, $pass;
+        $commentaireG=new CommentaireGateWay(new Connection($dsn,$user,$pass));
+        $commentaireG->insertCommentaire($commentaire);
+    }
+
 }

@@ -5,17 +5,37 @@ class Commentaire
 {
     private $commentaire;
     private $pseudo;
+    private $idArticle;
 
     /**
      * Commentaire constructor.
      * @param $commentaire
      * @param $pseudo
+     * @param $idArticle
      */
-    public function __construct($commentaire, $pseudo)
+    public function __construct($commentaire, $pseudo, $idArticle)
     {
         $this->commentaire = $commentaire;
         $this->pseudo = $pseudo;
+        $this->idArticle = $idArticle;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIdArticle()
+    {
+        return $this->idArticle;
+    }
+
+    /**
+     * @param mixed $idArticle
+     */
+    public function setIdArticle($idArticle): void
+    {
+        $this->idArticle = $idArticle;
+    }
+
 
     /**
      * @return mixed
