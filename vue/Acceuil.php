@@ -20,16 +20,16 @@ require_once 'pageContent/header.php';
 
                     <form class="card-body" method="post">
 
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             <label>Commentaires :</label>
                             <input class="form-control" type="text" name="InPseudo" placeholder="Pseudo">
                             <input class="form-control" type="text" name="InCommentaire" placeholder="Commentaire">
-                        </div>
+                        </div>-->
 
                         <div class="form-group">
-                            <button class="btn btn-primary" type="submit">Commenter</button>
+                            <button class="btn btn-primary" type="submit">Voir plus</button>
                         </div>
-                        <input type="hidden" name="action" value="AjouterCommentaire">
+                        <input type="hidden" name="action" value="ShowArticle">
                         <input type="hidden" name="id" value="<?=$article->getId();?>">
 
                     </form>
