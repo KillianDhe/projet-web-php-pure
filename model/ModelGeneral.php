@@ -86,4 +86,22 @@ class ModelGeneral
         $commentaireG->insertCommentaire($commentaire);
     }
 
+    public function getComWithArticleId(int $id){
+        global $dsn, $user, $pass;
+        $comList = [];
+
+        $comG = new CommentaireGateWay(new Connection($dsn,$user,$pass));
+
+        $result = $comG->selectComWithArticleId($id);
+
+        if (empty($result)){
+            return NULL;
+        }
+
+        foreach ($result as $commentaire){
+            $comList[] = new Commentaire($commentaire['commentaire'],$commentaire['pseudo'],$id);
+        }
+        return $comList;
+    }
+
 }

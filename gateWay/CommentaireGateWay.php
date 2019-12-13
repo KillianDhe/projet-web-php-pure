@@ -23,4 +23,13 @@ class CommentaireGateWay
             'pseudo' => array($commentaire->getPseudo(), PDO::PARAM_STR)));
     }
 
+    public function selectComWithArticleId(int $id){
+        $query = "SELECT pseudo, commentaire FROM Commentaire WHERE idArticle = :id";
+
+        $this->connection->executeQuery($query, array(
+            'id' => array($id,PDO::PARAM_INT)));
+
+        return $this->connection->getResults();
+    }
+
 }

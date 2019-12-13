@@ -27,8 +27,8 @@ class ControlVisiteur
 
                 case 'ShowArticle':
                     $this->showArticle();
-                    break;
 
+                    break;
 
 
                 default:
@@ -68,17 +68,20 @@ class ControlVisiteur
 
     }
 
-    public function showArticle(){
+    public function showArticle($comList = NULL){
         global $rep;
         $m = new ModelGeneral();
 
         $id = $_POST['id'];
         if(Validation::isInt($id)){
            $article = $m->getArticleById($id);
-            require_once $rep.'vue/ArticleView.php';
+           $comList = $m->getComWithArticleId($id);
         }
+        require_once $rep.'vue/ArticleView.php';
 
 
     }
+
+
 
 }
