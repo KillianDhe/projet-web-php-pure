@@ -15,8 +15,9 @@ class ControlFront
 
         $action = NULL;
         if(isset($_REQUEST['action'])){
-            Validation::purify($action);
+
             $action = $_REQUEST['action'];
+            Validation::purify($action);
 
         }
         try {
