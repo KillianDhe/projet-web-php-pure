@@ -17,7 +17,6 @@ require_once 'pageContent/header.php';
                         <label><?=$article->getPrenomAuteur()." ".$article->getPrenomAuteur();?></label>
                         <label><?=$article->getDate();?></label>
                          <label><?=$article->getTexte();?></label>
-
                     <form class="card-body" method="post">
 
                        <!-- <div class="form-group">

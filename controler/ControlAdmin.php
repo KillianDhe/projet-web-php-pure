@@ -23,26 +23,26 @@ class ControlAdmin
                          break;
 
                      case 'SupprimerArticle':
-                         $this->SupprimerArticle();
+                         try {
+                             $this->SupprimerArticle();
+                         } catch (Exception $e) {
+                         }
                          break;
 
                      case 'showArticle':
-                         $this->showArticleModif();
+                         try {
+                             $this->showArticleModif();
+                         } catch (Exception $e) {
+                         }
                          break;
                      case 'modifArticle' :
-                         $this->modifArticle();
+                         try {
+                             $this->modifArticle();
+                         } catch (Exception $e) {
+                         }
                          break;
 
-                     case 'SeConnecter':
-                         $this->SeConnecter();
-                         break;
 
-                     case 'loginPage' :
-                         $this->loginPage();
-                         break;
-                     case 'login' :
-                         $this->login();
-                         break;
 
                      case 'logout' :
                          $this->logout();
@@ -81,6 +81,7 @@ class ControlAdmin
             $pAuteur = $_POST['InPauteur'];
             $date=$_POST['InDate'];
             $desc=$_POST['InDesc'];
+
 
             $titre=Validation::purify($titre);
             $nAuteur=Validation::purify($nAuteur);
@@ -151,42 +152,13 @@ class ControlAdmin
 
 
 
-    public function loginPage(){
-        global $rep;
-        require_once $rep . 'vue/Connexion.php';
-    }
 
-    public function login()
-    {
-        if (isset($_POST['InEmail']) && isset($_POST['InPass'])){
-            $email = $_POST['InEmail'];
-            $pass = $_POST['InPass'];
-        }
 
-        if (!Validation::isEmail($email)) {
-            throw new Exception('c pas un email');
-        }
-        $m = new ModelGeneral();
-        $admin  = $m->getAdminByEmail($email);
 
-        if ($admin == null) {
-            throw new Exception('Mauvaise email');
-        }
 
-        if (!password_verify($pass,$admin->getMotDePasse())){
-            throw new Exception('Mauvais mdp');
-        }
-        $_SESSION['login'] = true;
-        $_SESSION['user'] = $admin;
-
-        $this->mainView();
-
-    }
     public function logout(){
-        session_destroy();
-        unset($_SESSION);
-
-        $this->mainView();
+        $m = new ModelAdmin();
+        $m->logout();
     }
 
 

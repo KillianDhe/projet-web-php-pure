@@ -7,7 +7,7 @@
  */
     $rep = __DIR__.'/../';
 
-    $dsn = "mysql:host=localhost;dbname=iut_alban";
+$dsn = "mysql:host=localhost;dbname=iut_alban";
     $user = "iut_alban";
     $pass = "password";
 

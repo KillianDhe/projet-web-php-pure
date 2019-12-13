@@ -64,21 +64,7 @@ class ModelGeneral
         $artcileG->updateArticleById($article);
     }
 
-    public function getAdminByEmail($mail){
-        global $dsn, $user, $pass;
 
-        $adminG = new AdminGateway(new Connection($dsn,$user,$pass));
-        $result = $adminG->finAdminByEmail($mail);
-
-        if (empty($result)){
-            return NULL;
-        }
-
-        $admin = $result[0];
-
-        return new Admin($admin['pseudo'],$admin['password'],$admin['nom'],$admin['prenom'],$admin['email']);
-
-    }
 
     public function insertCommentaire(Commentaire $commentaire){
         global $dsn, $user, $pass;

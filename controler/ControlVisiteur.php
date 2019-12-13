@@ -3,15 +3,12 @@
 
 class ControlVisiteur
 {
-    public function __construct()
+    public function __construct($action)
     {
         global $rep;
 
-        $action = NULL;
-        if(isset($_REQUEST['action'])){
-
-            $action = $_REQUEST['action'];
-            Validation::purify($action);
+        if(isset($action)){
+         $action=Validation::purify($action);
 
         }
             switch ($action) {
@@ -30,11 +27,18 @@ class ControlVisiteur
 
                     break;
 
+                case 'loginPage' :
+                    $this->loginPage();
+                    break;
+
+                case 'login' :
+                    $this->login();
+                    break;
 
                 default:
                     /*$dVueErreur[] = "erreur apppel php";
                     require('erreur.php');*/
-                    echo 'erreure form';
+                    echo 'erreure form lolol';
                     break;
 
             }
@@ -49,6 +53,40 @@ class ControlVisiteur
         require_once $rep . 'vue/Acceuil.php';
    }
 
+    public function loginPage(){
+        global $rep;
+        require_once $rep . 'vue/Connexion.php';
+    }
+
+    public function login()
+    {
+
+        if (isset($_POST['InEmail']) && isset($_POST['InPass'])){
+            $email = $_POST['InEmail'];
+            $pass = $_POST['InPass'];
+        }
+
+        $m = new ModelAdmin();
+        try {
+            $m->login($email, $pass);
+        } catch (Exception $e) {
+        }
+
+        $this->PanelAdmin();
+    }
+
+    public function PanelAdmin($articleModif = NULL)
+    {
+        global $rep;
+        $model = new ModelGeneral();
+        $articleList = $model->getAllArticle();
+
+        if (isset($_SESSION['login'])){
+            require_once $rep . 'vue/panelAdmin.php';
+            return;
+        }
+        require_once $rep . 'vue/Connexion.php';
+    }
 
     public function AjouterCommentaire()
     {

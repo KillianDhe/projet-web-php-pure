@@ -9,18 +9,42 @@
 class ControlFront
 {
 
+
     public function __construct()
     {
-        session_start();
 
-        $action = NULL;
-        if(isset($_REQUEST['action'])){
-
-            $action = $_REQUEST['action'];
-            Validation::purify($action);
-
-        }
+           session_start();
+            $listeActionAdmin = array('AjouterArticle', 'SupprimerArticle', 'modifArticle', 'logout', 'showArticle');
         try {
+            $modelAdmin=new ModelAdmin();
+            $admin=$modelAdmin->isAdmin();
+            $action = NULL;
+            if (isset($_REQUEST['action'])) {
+
+                $action = $_REQUEST['action'];
+                Validation::purify($action);
+            }
+            if (in_array($action, $listeActionAdmin)) {
+                if ($admin == null) {
+                    require_once "vue/Connexion.php";
+                } else {
+                    new ControlAdmin($action);
+                }
+
+            } else {
+                new ControlVisiteur($action);
+            }
+        }
+        catch(Exception $e){
+            echo "ya un probleme frere";
+            echo $e;
+        }
+    }
+
+}
+
+
+        /*try {
             switch ($action) {
                 case NULL :
                 case 'publicPage':
@@ -42,7 +66,7 @@ class ControlFront
 
                 default:
                     /*$dVueErreur[] = "erreur apppel php";
-                    require('erreur.php');*/
+                    require('erreur.php');
                     echo 'erreure form';
                     break;
 
@@ -53,6 +77,4 @@ class ControlFront
             var_dump($exception);
         }
 
-    }
-
-}
+    }*/
