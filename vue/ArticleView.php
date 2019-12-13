@@ -4,7 +4,7 @@ require_once 'pageContent/header.php';
 <body>
 
 <?php if(!empty($article)):?>
-    <div  class="container-fluid col-md-2">
+    <div  class="container-fluid ">
                 <h5><?=$article->getTitre();?></h5>
 
 
@@ -17,7 +17,7 @@ require_once 'pageContent/header.php';
 
     </div>
 
-    <div class="container-fluid col-2 offset-4">
+    <div class="container-fluid ">
         <label><?=$article->getTexte();?></label><br>
         <label><strong>Auteur :</strong><?=$article->getPrenomAuteur()." ".$article->getPrenomAuteur();?></label> <br>
         <label><strong>Date de parution :</strong><?=$article->getDate();?></label>
