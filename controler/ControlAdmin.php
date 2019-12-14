@@ -152,13 +152,10 @@ class ControlAdmin
 
 
 
-
-
-
-
     public function logout(){
         $m = new ModelAdmin();
         $m->logout();
+        require_once "vue/Connexion.php";
     }
 
 
