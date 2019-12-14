@@ -38,6 +38,8 @@ class ControlFront
         catch(Exception $e){
             echo "ya un probleme frere";
             echo $e;
+        }catch (Exception $exception){
+            var_dump($exception);
         }
     }
 
