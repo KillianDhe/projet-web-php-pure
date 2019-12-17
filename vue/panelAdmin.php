@@ -32,7 +32,7 @@ require_once 'pageContent/header.php';
 
                     <div class="form-group">
                         <label>Date :</label>
-                        <input class="form-control" type="date" name="InDate">
+                        <input class="form-control" type="date" value="<?php echo date("Y-m-j"); ?>" name="InDate">
                     </div>
 
                     <div class="form-group">

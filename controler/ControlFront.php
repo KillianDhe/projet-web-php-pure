@@ -14,7 +14,7 @@ class ControlFront
     {
 
            session_start();
-            $listeActionAdmin = array('AjouterArticle', 'SupprimerArticle', 'modifArticle', 'logout', 'showArticle');
+            $listeActionAdmin = array('AjouterArticle', 'SupprimerArticle', 'modifArticle', 'logout', 'showArticle','panelAdmin');
         try {
             $modelAdmin=new ModelAdmin();
             $admin=$modelAdmin->isAdmin();
@@ -36,7 +36,7 @@ class ControlFront
             }
         }
         catch(Exception $e){
-            echo "ya un probleme frere";
+            echo "frero la le pb ca vient du front , surement une erreur non ctach quelque part , Aie aie aie";
             echo $e;
         }catch (Exception $exception){
             var_dump($exception);

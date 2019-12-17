@@ -53,7 +53,6 @@ class ModelAdmin
          if(isset($_SESSION['login']) && isset($_SESSION['role']))
             {
              $login=Validation::purify($_SESSION['login']);
-
              $admin =$this->getAdminByEmail($login);
             return $admin;
             }

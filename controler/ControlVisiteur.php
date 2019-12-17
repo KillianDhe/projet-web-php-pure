@@ -19,7 +19,11 @@ class ControlVisiteur
 
 
                 case 'AjouterCommentaire':
-                    $this->AjouterCommentaire();
+                    try {
+                        $this->AjouterCommentaire();
+                    } catch (Exception $e) {
+                        require_once "vue/Erreur.php";
+                    }
                     break;
 
                 case 'ShowArticle':
@@ -28,11 +32,20 @@ class ControlVisiteur
                     break;
 
                 case 'loginPage' :
-                    $this->loginPage();
+                    try {
+                        $this->loginPage();
+                    } catch (Exception $e) {
+                        require_once "vue/Erreur.php";
+                    }
                     break;
 
                 case 'login' :
-                    $this->login();
+                    try{
+                        $this->login();
+                    }
+                    Catch(Exception $e){
+                        require_once "vue/Erreur.php";
+                    }
                     break;
 
                 default:
@@ -54,12 +67,18 @@ class ControlVisiteur
    }
 
     public function loginPage(){
+        if($_SESSION!=null){
+            throw new Exception("vous etes déjà connecté");
+        }
         global $rep;
         require_once $rep . 'vue/Connexion.php';
     }
 
     public function login()
     {
+        if($_SESSION!=null){
+            throw new Exception("vous etes déjà connecté");
+        }
 
         if (isset($_POST['InEmail']) && isset($_POST['InPass'])){
             $email = $_POST['InEmail'];
@@ -67,10 +86,8 @@ class ControlVisiteur
         }
 
         $m = new ModelAdmin();
-        try {
-            $m->login($email, $pass);
-        } catch (Exception $e) {
-        }
+
+        $m->login($email, $pass);
 
         $this->PanelAdmin();
     }
@@ -95,10 +112,15 @@ class ControlVisiteur
         $commentaire = $_POST['InCommentaire'];
         $id = $_POST['id'];
 
+        if (! Validation::isInt($id)){
+            throw new Exception('JE CROIS QUE LE PROFESSEIR ESSAIE DE ME HACKER OLALA');
+        }
         $pseudo=Validation::purify($pseudo);
         $commentaire=Validation::purify($commentaire);
 
-
+        if(($pseudo==null)||($commentaire==null)){
+            throw new Exception("vous devez entrer un pseudo pour commenter (ca parait logique gne)");
+        }
         $commentaire = new Commentaire($commentaire,$pseudo,$id);
          $m = new ModelGeneral();
         $m->insertCommentaire($commentaire);

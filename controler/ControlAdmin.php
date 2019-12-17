@@ -19,13 +19,18 @@ class ControlAdmin
                          break;
 
                      case 'AjouterArticle':
-                         $this->AjouterArticle();
+                         try {
+                             $this->AjouterArticle();
+                         } catch (Exception $e) {
+                             require_once "vue/Erreur.php";
+                         }
                          break;
 
                      case 'SupprimerArticle':
                          try {
                              $this->SupprimerArticle();
                          } catch (Exception $e) {
+                             require_once "vue/Erreur.php";
                          }
                          break;
 
@@ -33,15 +38,20 @@ class ControlAdmin
                          try {
                              $this->showArticleModif();
                          } catch (Exception $e) {
+                             require_once "vue/Erreur.php";
                          }
                          break;
                      case 'modifArticle' :
                          try {
                              $this->modifArticle();
                          } catch (Exception $e) {
+                             require_once "vue/Erreur.php";
                          }
                          break;
 
+                     case 'panelAdmin' :
+                         $this->mainView();
+                         break;
 
 
                      case 'logout' :
@@ -89,8 +99,11 @@ class ControlAdmin
             $date=Validation::purify($date);
             $desc=Validation::purify($desc);
 
+            if($titre==null || $desc==null){
+                throw new Exception('Veuillez renseigner au moins un titre et une description ');
+            }
             $m = new ModelGeneral();
-            $article = new Article(0,$desc,$titre,$date,$pAuteur,$nAuteur);
+            $article = new Article(0,$desc,$titre,null,$pAuteur,$nAuteur);
             $m->mInsertArticle($article);
             $this->mainView();
 
@@ -99,7 +112,7 @@ class ControlAdmin
         public function SupprimerArticle(){
             $id = $_POST['articleId'];
             if (! Validation::isInt($id)){
-                throw new Exception('c pas int');
+                throw new Exception('JE CROIS QUE LE PROFESSEIR ESSAIE DE ME HACKER OLALA');
             }
 
             $model = new ModelGeneral();
@@ -110,7 +123,7 @@ class ControlAdmin
         public function showArticleModif(){
             $id = $_POST['articleId'];
             if (! Validation::isInt($id)){
-                throw new Exception('c pas int');
+                throw new Exception('JE CROIS QUE LE PROFESSEIR ESSAIE DE ME HACKER OLALA');
             }
 
             $model = new ModelGeneral();
@@ -131,7 +144,7 @@ class ControlAdmin
             $id = $_POST['id'];
 
             if (! Validation::isInt($id)){
-                throw new Exception('c pas int');
+                throw new Exception('JE CROIS QUE LE PROFESSEIR ESSAIE DE ME HACKER OLALA');
             }
 
 
