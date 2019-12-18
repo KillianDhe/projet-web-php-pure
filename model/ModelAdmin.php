@@ -38,6 +38,7 @@ class ModelAdmin
         if (!password_verify($mdp,$admin->getMotDePasse())){
             throw new Exception('Mauvais mdp');
         }
+
         $_SESSION['login'] = $login;
         $_SESSION['role'] = "admin";
 

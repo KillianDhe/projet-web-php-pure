@@ -84,4 +84,9 @@ class Validation {
     public static function isValidPassword($password) {
         return filter_var($password, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,20}$"]]);
     }
+
+    public static function nettoyerint($int){
+        return filter_var($int,FILTER_SANITIZE_NUMBER_INT);
+
+    }
 }

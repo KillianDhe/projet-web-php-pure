@@ -70,6 +70,27 @@ class ModelGeneral
         global $dsn, $user, $pass;
         $commentaireG=new CommentaireGateWay(new Connection($dsn,$user,$pass));
         $commentaireG->insertCommentaire($commentaire);
+        $this->incrementerNbCommentaire();
+        setcookie("pseudo",$commentaire->getPseudo(),time()+365*24*3600);
+    }
+
+    public static  function  getpseudo(){
+        if(isset($_COOKIE['pseudo'])){
+            return (Validation::purify($_COOKIE['pseudo']));
+        }
+        return "";
+    }
+
+    public static function getnbcommentaire()
+    {
+        if(isset($_COOKIE['nbcommentaire']) && ($_COOKIE['nbcommentaire'] >= 0)){
+             return (Validation::nettoyerint($_COOKIE['nbcommentaire']));
+        }
+        else return 0;
+    }
+
+    public function incrementerNbCommentaire(){
+        setcookie('nbcommentaire',($this->getnbcommentaire()+1),time()+365*24*3600);
     }
 
     public function getComWithArticleId(int $id){
@@ -89,5 +110,25 @@ class ModelGeneral
         }
         return $comList;
     }
+
+    public function chercherParDate($date){
+        //VALIDER UNE DATE
+        global $dsn, $user, $pass;
+
+        $articleG = new ArticleGateWay(new Connection($dsn,$user,$pass));
+        $result=$articleG->getArticleByDate($date);
+
+        if (empty($result)){
+            return NULL;
+        }
+
+        foreach ($result as $article){
+            $articleList[] = new Article($article['idArticle'],$article['description'],$article['titre'],$article['date'],$article['prenomA'],$article['nomA']);
+        }
+        return $articleList;
+
+    }
+
+
 
 }

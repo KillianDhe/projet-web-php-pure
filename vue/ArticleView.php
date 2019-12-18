@@ -34,7 +34,7 @@ require_once 'pageContent/header.php';
         <div class="container-fluid">
             <div class="form-group col-md">
                 <div class="card border-dark"><br>
-                    <input class="form-control" type="text" name="InPseudo" placeholder="Pseudo"><br>
+                    <input class="form-control" type="text" value="<?php if(isset($_COOKIE['pseudo'])):echo $_COOKIE['pseudo']; else : echo "le cookie n'est pas set"; endif;?>" name="InPseudo" placeholder="Pseudo"><br>
                     <textarea class="form-control" type="" name="InCommentaire" placeholder="Commentaire"></textarea><br>
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Commenter</button>

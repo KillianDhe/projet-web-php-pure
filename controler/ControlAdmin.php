@@ -18,6 +18,7 @@ class ControlAdmin
                          $this->mainView();
                          break;
 
+
                      case 'AjouterArticle':
                          try {
                              $this->AjouterArticle();
@@ -53,6 +54,9 @@ class ControlAdmin
                          $this->mainView();
                          break;
 
+                     case 'chercherParDate':
+                         $this->chercherParDate();
+                         break;
 
                      case 'logout' :
                          $this->logout();
@@ -67,6 +71,8 @@ class ControlAdmin
 
                  }
              }
+
+
 
 
 
@@ -132,6 +138,17 @@ class ControlAdmin
 
 
             $this->mainView($articleModif);
+        }
+
+        private function chercherParDate(){
+        $date=$_POST['InDate'];
+        $date=Validation::purify($date);
+         $m=new ModelGeneral();
+         $articleListRecherche=  $m->chercherparDate($date);
+         require_once "vue/panelAdmin.php";
+
+
+
         }
 
         private function modifArticle(){

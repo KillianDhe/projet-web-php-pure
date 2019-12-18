@@ -14,7 +14,7 @@ class ControlFront
     {
 
            session_start();
-            $listeActionAdmin = array('AjouterArticle', 'SupprimerArticle', 'modifArticle', 'logout', 'showArticle','panelAdmin');
+            $listeActionAdmin = array('AjouterArticle', 'SupprimerArticle', 'modifArticle', 'logout', 'showArticle','panelAdmin','chercherParDate');
         try {
             $modelAdmin=new ModelAdmin();
             $admin=$modelAdmin->isAdmin();

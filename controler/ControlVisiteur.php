@@ -119,13 +119,12 @@ class ControlVisiteur
         $commentaire=Validation::purify($commentaire);
 
         if(($pseudo==null)||($commentaire==null)){
-            throw new Exception("vous devez entrer un pseudo pour commenter (ca parait logique gne)");
+            throw new Exception("vous devez entrer un pseudo et un commentaire pour commenter (ca parait logique gne)");
         }
         $commentaire = new Commentaire($commentaire,$pseudo,$id);
          $m = new ModelGeneral();
         $m->insertCommentaire($commentaire);
         $this->showArticle();
-
     }
 
     public function showArticle($comList = NULL){
@@ -137,7 +136,7 @@ class ControlVisiteur
            $article = $m->getArticleById($id);
            $comList = $m->getComWithArticleId($id);
         }
-        require_once $rep.'vue/ArticleView.php';
+            require $rep.'vue/ArticleView.php';
 
 
     }

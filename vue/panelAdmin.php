@@ -47,7 +47,21 @@ require_once 'pageContent/header.php';
 
                 </form>
             </div>
+
+            <form class="card-body" method="post">
+
+                <div class="form-group">
+                    <label>rechercher par date  :</label>
+                    <input class="form-control" type="date" name="InDate">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Valider</button>
+                </div>
+                <input type="hidden" name="action" value="chercherParDate">
+            </form>
             <!----------------------------------------- MOFID ARTICLE----------------------------------------------- -->
+            <?php if(isset($articleModif)) : ?>
             <?php if(!empty($articleModif)):?>
             <div class="card offset-1" style="width: 40rem;">
                 <div class="card-header"><h5>Modifier un article</h5></div>
@@ -87,28 +101,49 @@ require_once 'pageContent/header.php';
             </div>
         </div>
         <?php endif; ?>
+        <?php endif; ?>
         <br>
         <!----------------------------------------- SUPRIME ARTICLE----------------------------------------------- -->
         <div class="row">
             <div class="card offset-1" style="width: 40rem;">
                 <div class="card-header"><h5>Suprimer un article</h5></div>
                 <ul class="list-group list-group-flush">
-                    <?php foreach ($articleList as $article): ?>
-                        <li class="list-group-item"><i><?= $article->getTitre(); ?></i>
-                            <form method="post">
-                                <button type="submit" class="close text-success" name="action"
-                                        value="showArticle"><span
-                                            class="fas fa-undo" style="padding: 4px;"></span></button>
-                                <button type="submit" class="close text-danger" name="action"
-                                        value="SupprimerArticle"><span
-                                            class="far fa-trash-alt" style="padding: 4px;"></span></button>
-                                <input type="hidden" name="articleId" value="<?= $article->getId(); ?>">
+                    <? if(isset($articleList)):
+                        foreach ($articleList as $article): ?>
+                            <li class="list-group-item"><i><?= $article->getTitre(); ?></i>
+                                <form method="post">
+                                    <button type="submit" class="close text-success" name="action"
+                                            value="showArticle"><span
+                                                class="fas fa-undo" style="padding: 4px;"></span></button>
+                                    <button type="submit" class="close text-danger" name="action"
+                                            value="SupprimerArticle"><span
+                                                class="far fa-trash-alt" style="padding: 4px;"></span></button>
+                                    <input type="hidden" name="articleId" value="<?= $article->getId(); ?>">
 
-                            </form>
-                        </li>
+                                </form>
+                            </li>
 
-                    <?php endforeach; ?>
-                </ul>
+                         <?php endforeach;?>
+                    <?php else :
+                         if(isset($articleListRecherche)):
+                            foreach ($articleListRecherche as $article): ?>
+                                <li class="list-group-item"><i><?= $article->getTitre(); ?></i>
+                                    <form method="post">
+                                        <button type="submit" class="close text-success" name="action"
+                                                value="showArticle"><span
+                                                    class="fas fa-undo" style="padding: 4px;"></span></button>
+                                        <button type="submit" class="close text-danger" name="action"
+                                                value="SupprimerArticle"><span
+                                                    class="far fa-trash-alt" style="padding: 4px;"></span></button>
+                                        <input type="hidden" name="articleId" value="<?= $article->getId(); ?>">
+
+                                    </form>
+                                </li>
+                            <?php endforeach;
+                             endif;
+                        endif; ?>
+
+        </ul>
             </div>
 
         </div>

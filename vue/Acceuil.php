@@ -9,6 +9,13 @@ require_once 'pageContent/header.php';
  */
     ?>
     <body>
+    <?php if(isset($_COOKIE['nbcommentaire'])): ?>
+    <div>
+        <label>Nombre de commentaires que vous avez posté :</label>
+        <label>  <?php echo ModelGeneral::getnbcommentaire() ?></label>
+    </div>
+
+    <?php endif; ?>
      <?php foreach ($articleList as $article): ?>
         <div  class="container-fluid">
             <div class="row">

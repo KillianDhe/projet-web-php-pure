@@ -66,4 +66,13 @@ class ArticleGateWay
                                                 ':id' => [$article->getId(), PDO::PARAM_INT]
                                         ));
     }
+
+    public function getArticleByDate($date){
+        $query = "SELECT * FROM Article WHERE date =DATE_FORMAT(:datee,\"%d/%m/%Y\")";
+
+        $this->connection->executeQuery($query, array(
+            'datee' => array($date,PDO::PARAM_STR)));
+
+        return $this->connection->getResults();
+    }
 }
