@@ -82,6 +82,7 @@ class ControlAdmin
             $model = new ModelGeneral();
             $articleList = $model->getAllArticle();
 
+
             if (isset($_SESSION['login'])){
                 require_once $rep . 'vue/panelAdmin.php';
                 return;
@@ -105,8 +106,8 @@ class ControlAdmin
             $date=Validation::purify($date);
             $desc=Validation::purify($desc);
 
-            if($titre==null || $desc==null){
-                throw new Exception('Veuillez renseigner au moins un titre et une description ');
+            if($titre==null || $desc==null||$date==null){
+                throw new Exception('Veuillez renseigner au moins un titre , une description et une date ');
             }
             $m = new ModelGeneral();
             $article = new Article(0,$desc,$titre,null,$pAuteur,$nAuteur);
@@ -144,7 +145,7 @@ class ControlAdmin
         $date=$_POST['InDate'];
         $date=Validation::purify($date);
          $m=new ModelGeneral();
-         $articleListRecherche=  $m->chercherparDate($date);
+         $articleListRecherche=$m->chercherparDate($date);
          require_once "vue/panelAdmin.php";
 
 

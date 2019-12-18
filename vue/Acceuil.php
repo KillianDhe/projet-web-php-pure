@@ -9,14 +9,16 @@ require_once 'pageContent/header.php';
  */
     ?>
     <body>
-    <?php if(isset($_COOKIE['nbcommentaire'])): ?>
+
     <div>
-        <label>Nombre de commentaires que vous avez posté :</label>
-        <label>  <?php echo ModelGeneral::getnbcommentaire() ?></label>
+        <label>Nombre d'Articles : <?php echo $nbArt ?></label><br>
+        <?php if(isset($_COOKIE['nbcommentaire'])): ?>
+        <label>Nombre de commentaires que vous avez posté : <?php echo ModelGeneral::getnbcommentaire() ?></label>
+        <?php endif; ?>
     </div>
 
-    <?php endif; ?>
-     <?php foreach ($articleList as $article): ?>
+       <?php if(isset($articleList)):
+        foreach ($articleList as $article): ?>
         <div  class="container-fluid">
             <div class="row">
                 <div class="card offset-1" style="width: 40rem;">
@@ -43,9 +45,12 @@ require_once 'pageContent/header.php';
             </div>
         </div>
      </br>
-     <?php endforeach;?>
+     <?php endforeach;
+        endif; ?>
     </body>
 
 <?php
 require_once 'pageContent/phouter.php';
 ?>
+
+

@@ -48,12 +48,12 @@ class ArticleGateWay
     }
 
     public function selectNbArticle(){
-        $query = "SELECT COUNT(1) date FROM Article";
+        $query = "SELECT COUNT(*) FROM Article";
 
 
         $this->connection->executeQuery($query);
 
-        return $this->connection->getResults();
+        return $this->connection->getResults()[0]['COUNT(*)'];
     }
 
     public function deletArticleById(int $id){
@@ -77,7 +77,7 @@ class ArticleGateWay
     }
 
     public function getArticleByDate($date){
-        $query = "SELECT * FROM Article WHERE date =DATE_FORMAT(:datee,\"%d/%m/%Y\")";
+        $query = "SELECT idArticle,titre, description, nomA, prenomA, date FROM Article WHERE date = :datee";
 
         $this->connection->executeQuery($query, array(
             'datee' => array($date,PDO::PARAM_STR)));

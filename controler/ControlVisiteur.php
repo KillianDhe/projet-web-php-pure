@@ -63,6 +63,7 @@ class ControlVisiteur
         global $rep;
         $model = new ModelGeneral();
         $articleList = $model->getAllArticle();
+        $nbArt=$model->getNbArticle();
         require_once $rep . 'vue/Acceuil.php';
    }
 
@@ -124,6 +125,8 @@ class ControlVisiteur
         $commentaire = new Commentaire($commentaire,$pseudo,$id);
          $m = new ModelGeneral();
         $m->insertCommentaire($commentaire);
+
+
         $this->showArticle();
     }
 

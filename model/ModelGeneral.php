@@ -72,6 +72,7 @@ class ModelGeneral
         $commentaireG->insertCommentaire($commentaire);
         $this->incrementerNbCommentaire();
         setcookie("pseudo",$commentaire->getPseudo(),time()+365*24*3600);
+        $_COOKIE['pseudo']=$commentaire->getPseudo();
     }
 
     public static  function  getpseudo(){
@@ -112,20 +113,31 @@ class ModelGeneral
     }
 
     public function chercherParDate($date){
-        //VALIDER UNE DATE
         global $dsn, $user, $pass;
 
         $articleG = new ArticleGateWay(new Connection($dsn,$user,$pass));
         $result=$articleG->getArticleByDate($date);
 
         if (empty($result)){
-            return NULL;
+           return null;
         }
 
         foreach ($result as $article){
             $articleList[] = new Article($article['idArticle'],$article['description'],$article['titre'],$article['date'],$article['prenomA'],$article['nomA']);
         }
         return $articleList;
+
+    }
+
+    public function getNbArticle(){
+        global $dsn, $user, $pass;
+        $ArtG=new ArticleGateWay(new Connection($dsn,$user,$pass));
+        $nbArt=$ArtG->selectNbArticle();
+
+        if(isset($nbArt) && ($nbArt!=null))
+            return $nbArt;
+        else
+            return 0;
 
     }
 
