@@ -10,9 +10,9 @@ require_once 'pageContent/header.php';
 ?>
     <body>
     <div id="wrapperconnexion">
-    <div  class="container-fluid">
+    <div  class="container">
 
-            <div class="card offset-1" style="width: 40rem;">
+            <div class="card offset-2" style="width: 40rem;">
                 <div class="card-header"><h5>Connexion administrateur</h5></div>
                 <form class="card-body" method="post">
 
