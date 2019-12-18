@@ -108,7 +108,7 @@ require_once 'pageContent/header.php';
             <div class="card offset-1" style="width: 40rem;">
                 <div class="card-header"><h5>Suprimer un article</h5></div>
                 <ul class="list-group list-group-flush">
-                    <? if(isset($articleList)):
+                    <?php if(isset($articleList)):
                         foreach ($articleList as $article): ?>
                             <li class="list-group-item"><i><?= $article->getTitre(); ?></i>
                                 <form method="post">
@@ -122,7 +122,6 @@ require_once 'pageContent/header.php';
 
                                 </form>
                             </li>
-
                          <?php endforeach;?>
                     <?php else :
                          if(isset($articleListRecherche)):

@@ -129,6 +129,10 @@ class ModelGeneral
 
     }
 
+    public function getLimit(){
+
+    }
+
 
 
 }

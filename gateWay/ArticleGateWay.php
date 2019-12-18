@@ -47,6 +47,15 @@ class ArticleGateWay
         return $this->connection->getResults();
     }
 
+    public function selectNbArticle(){
+        $query = "SELECT COUNT(1) date FROM Article";
+
+
+        $this->connection->executeQuery($query);
+
+        return $this->connection->getResults();
+    }
+
     public function deletArticleById(int $id){
         $query = "DELETE FROM Article WHERE idArticle = :id";
 
@@ -73,6 +82,15 @@ class ArticleGateWay
         $this->connection->executeQuery($query, array(
             'datee' => array($date,PDO::PARAM_STR)));
 
+        return $this->connection->getResults();
+    }
+
+    public function selectLimit($noPage, $articlePage){
+        $query =  "SELECT idArticle, nomA, prenomA, description, titre, date FROM Article LIMIT :noPage, :articlePage";
+
+        $this->connection->executeQuery($query, array(
+                                                'noPage' => array($noPage, PDO::PARAM_INT),
+                                                'articlePage' => array($articlePage, PDO::PARAM_INT)));
         return $this->connection->getResults();
     }
 }
