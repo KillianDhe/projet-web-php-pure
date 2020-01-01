@@ -11,6 +11,7 @@ require_once 'pageContent/header.php';
     <body>
 
     <div>
+        <?php echo date("jj/m/Y");    ?>
         <label>Nombre d'Articles : <?php echo $nbArt ?></label><br>
         <?php if(isset($_COOKIE['nbcommentaire'])): ?>
         <label>Nombre de commentaires que vous avez posté : <?php echo ModelGeneral::getnbcommentaire() ?></label>
@@ -23,9 +24,9 @@ require_once 'pageContent/header.php';
             <div class="row">
                 <div class="card offset-1" style="width: 40rem;">
                     <div class="card-header"><h5><?=$article->getTitre();?></h5></div>
-                        <label><?=$article->getPrenomAuteur()." ".$article->getPrenomAuteur();?></label>
+                        <label><?=$article->getPrenomAuteur()." ".$article->getNomAuteur();?></label>
                         <label><?=$article->getDate();?></label>
-                         <label><?=$article->getTexte();?></label>
+                         <?=nl2br($article->getTexte());?>
                     <form class="card-body" method="post">
 
                        <!-- <div class="form-group">

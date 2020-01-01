@@ -99,18 +99,21 @@ class ControlAdmin
             $date=$_POST['InDate'];
             $desc=$_POST['InDesc'];
 
+            //laisse passer l'html pour pouvoir l'afficher en tant que tel , sinon le nettoie en tant que texte  .
+            if (! Validation::isValidHtml($desc)){
+                $desc=Validation::purify($desc);
+            }
 
             $titre=Validation::purify($titre);
             $nAuteur=Validation::purify($nAuteur);
             $pAuteur=Validation::purify($pAuteur);
             $date=Validation::purify($date);
-            $desc=Validation::purify($desc);
 
             if($titre==null || $desc==null||$date==null){
                 throw new Exception('Veuillez renseigner au moins un titre , une description et une date ');
             }
             $m = new ModelGeneral();
-            $article = new Article(0,$desc,$titre,null,$pAuteur,$nAuteur);
+            $article = new Article(0,$desc,$titre,$date,$pAuteur,$nAuteur);
             $m->mInsertArticle($article);
             $this->mainView();
 
@@ -165,12 +168,17 @@ class ControlAdmin
                 throw new Exception('JE CROIS QUE LE PROFESSEIR ESSAIE DE ME HACKER OLALA');
             }
 
+            //laisse passer l'html pour pouvoir l'afficher en tant que tel , sinon le nettoie en tant que texte  .
+            if (! Validation::isValidHtml($desc)){
+               $desc=Validation::purify($desc);
+            }
+
 
             $titre=Validation::purify($titre);
             $nAuteur=Validation::purify($nAuteur);
             $pAuteur=Validation::purify($pAuteur);
             $date=Validation::purify($date);
-            $desc=Validation::purify($desc);
+
 
 
 

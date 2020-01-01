@@ -89,4 +89,9 @@ class Validation {
         return filter_var($int,FILTER_SANITIZE_NUMBER_INT);
 
     }
+
+    public static function isValidHtml($html) {
+        return filter_var($html, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => "(\<(\/)?(\w)*(\d)?\>)"]]);
+    }
+
 }

@@ -7,19 +7,11 @@ require_once 'pageContent/header.php';
     <div  class="container-fluid">
                 <h5><?=$article->getTitre();?></h5>
 
-
-                    <!-- <div class="form-group">
-                         <label>Commentaires :</label>
-                         <input class="form-control" type="text" name="InPseudo" placeholder="Pseudo">
-                         <input class="form-control" type="text" name="InCommentaire" placeholder="Commentaire">
-                     </div>-->
-
-
     </div>
 
     <div class="container-fluid">
-        <label><?=$article->getTexte();?></label><br>
-        <label><strong>Auteur :</strong><?=$article->getPrenomAuteur()." ".$article->getPrenomAuteur();?></label> <br>
+        <?php  echo nl2br($article->getTexte());?><br>
+        <label><strong>Auteur :</strong><?=$article->getPrenomAuteur()." ".$article->getNomAuteur();?></label> <br>
         <label><strong>Date de parution :</strong><?=$article->getDate();?></label>
 
     </div>
@@ -34,7 +26,7 @@ require_once 'pageContent/header.php';
         <div class="container-fluid">
             <div class="form-group col-md">
                 <div class="card border-dark"><br>
-                    <input class="form-control" type="text" value="<?php if(isset($_COOKIE['pseudo'])):echo $_COOKIE['pseudo']; else : echo "le cookie n'est pas set"; endif;?>" name="InPseudo" placeholder="Pseudo"><br>
+                    <input class="form-control" type="text" value="<?php if(isset($_COOKIE['pseudo'])):echo $_COOKIE['pseudo']; endif;?>" name="InPseudo" placeholder="Pseudo"><br>
                     <textarea class="form-control" type="" name="InCommentaire" placeholder="Commentaire"></textarea><br>
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Commenter</button>
@@ -51,8 +43,10 @@ require_once 'pageContent/header.php';
         <?php if(!empty($comList)):?>
         <?php foreach ($comList as $com): ?>
             <li class="list-group-item"><i><h5><?= $com->getPseudo(); ?></h5><br>    <?= $com->getCommentaire();?></i></li>
-        <?php endforeach; ?>
-        <?php endif;?>
+        <?php endforeach;
+        else :
+            echo "Soyez le premier a commenter cet article !";
+         endif;?>
 
 </body>
 <?php

@@ -5,8 +5,8 @@ class ControlVisiteur
 {
     public function __construct($action)
     {
-        global $rep;
 
+        global $rep;
         if(isset($action)){
          $action=Validation::purify($action);
 

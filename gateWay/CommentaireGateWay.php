@@ -24,7 +24,7 @@ class CommentaireGateWay
     }
 
     public function selectComWithArticleId(int $id){
-        $query = "SELECT pseudo, commentaire FROM Commentaire WHERE idArticle = :id";
+        $query = "SELECT pseudo, commentaire FROM Commentaire WHERE idArticle = :id ORDER BY idCommentaire desc";
 
         $this->connection->executeQuery($query, array(
             'id' => array($id,PDO::PARAM_INT)));

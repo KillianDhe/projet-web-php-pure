@@ -32,12 +32,12 @@ require_once 'pageContent/header.php';
 
                     <div class="form-group">
                         <label>Date :</label>
-                        <input class="form-control" type="date" value="<?php echo date("Y-m-j"); ?>" name="InDate">
+                        <input class="form-control" type="date" value="<?php echo date("Y-m-d"); ?>" name="InDate">
                     </div>
 
                     <div class="form-group">
                         <label for="msg">Description :</label>
-                        <textarea class="form-control" id="msg" name="InDesc"></textarea>
+                        <textarea placeholder="Vous pouvez utiliser des balises html pour mettre en forme votre texte (non nécessaires pour les retours à la ligne)" class="form-control" id="msg"  name="InDesc"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -77,7 +77,7 @@ require_once 'pageContent/header.php';
 
                     <div class="form-group">
                         <label for="msg">Description :</label>
-                        <textarea class="form-control" id="msg" name="InDesc"><?=$articleModif->getTexte();?></textarea>
+                        <textarea placeholder="Vous pouvez utiliser des balises html pour mettre en forme votre texte (non nécessaires pour les retours à la ligne)" class="form-control" id="msg" name="InDesc"><?=$articleModif->getTexte();?></textarea>
                     </div>
 
                     <div class="form-group">
@@ -106,6 +106,12 @@ require_once 'pageContent/header.php';
                         <button class="btn btn-primary" type="submit">Rechercher</button>
                     </div>
                     <input type="hidden" name="action" value="chercherParDate">
+                </form>
+                <form>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Effacer les filtres </button>
+                    </div>
+                    <input type="hidden" name="action" value="panelAdmin">
                 </form>
                 <ul class="list-group list-group-flush">
                     <?php if(isset($articleList)):
