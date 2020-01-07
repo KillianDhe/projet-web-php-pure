@@ -11,6 +11,7 @@ class ControlVisiteur
          $action=Validation::purify($action);
 
         }
+        try {
             switch ($action) {
                 case NULL :
                 case 'publicPage':
@@ -19,11 +20,8 @@ class ControlVisiteur
 
 
                 case 'AjouterCommentaire':
-                    try {
-                        $this->AjouterCommentaire();
-                    } catch (Exception $e) {
-                        require_once "vue/Erreur.php";
-                    }
+
+                    $this->AjouterCommentaire();
                     break;
 
                 case 'ShowArticle':
@@ -32,20 +30,11 @@ class ControlVisiteur
                     break;
 
                 case 'loginPage' :
-                    try {
-                        $this->loginPage();
-                    } catch (Exception $e) {
-                        require_once "vue/Erreur.php";
-                    }
+                    $this->loginPage();
                     break;
 
                 case 'login' :
-                    try{
-                        $this->login();
-                    }
-                    Catch(Exception $e){
-                        require_once "vue/Erreur.php";
-                    }
+                    $this->login();
                     break;
 
                 default:
@@ -55,6 +44,11 @@ class ControlVisiteur
                     break;
 
             }
+        }
+        Catch(Exception $e)
+        {
+            require_once $rep.'vue/Erreur.php';
+        }
 
 
     }

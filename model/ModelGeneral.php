@@ -71,8 +71,7 @@ class ModelGeneral
         $commentaireG=new CommentaireGateWay(new Connection($dsn,$user,$pass));
         $commentaireG->insertCommentaire($commentaire);
         $this->incrementerNbCommentaire();
-        setcookie("pseudo",$commentaire->getPseudo(),time()+365*24*3600);
-        $_COOKIE['pseudo']=$commentaire->getPseudo();
+        $_SESSION['pseudoComm']=$commentaire->getPseudo();
     }
 
     public static  function  getpseudo(){

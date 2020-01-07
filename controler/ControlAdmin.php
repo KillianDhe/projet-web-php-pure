@@ -13,64 +13,56 @@ class ControlAdmin
     {
         global $rep;
 
-                 switch ($action) {
-                     case NULL :
-                         $this->mainView();
-                         break;
+        try {
+
+            switch ($action) {
+                case NULL :
+                    $this->mainView();
+                    break;
 
 
-                     case 'AjouterArticle':
-                         try {
-                             $this->AjouterArticle();
-                         } catch (Exception $e) {
-                             require_once "vue/Erreur.php";
-                         }
-                         break;
+                case 'AjouterArticle':
+                    $this->AjouterArticle();
+                    break;
 
-                     case 'SupprimerArticle':
-                         try {
-                             $this->SupprimerArticle();
-                         } catch (Exception $e) {
-                             require_once "vue/Erreur.php";
-                         }
-                         break;
+                case 'SupprimerArticle':
+                    $this->SupprimerArticle();
+                    break;
 
-                     case 'showArticle':
-                         try {
-                             $this->showArticleModif();
-                         } catch (Exception $e) {
-                             require_once "vue/Erreur.php";
-                         }
-                         break;
-                     case 'modifArticle' :
-                         try {
-                             $this->modifArticle();
-                         } catch (Exception $e) {
-                             require_once "vue/Erreur.php";
-                         }
-                         break;
+                case 'showArticle':
+                    $this->showArticleModif();
+                    break;
+                case 'modifArticle' :
+                    $this->modifArticle();
+                    break;
 
-                     case 'panelAdmin' :
-                         $this->mainView();
-                         break;
+                case 'panelAdmin' :
+                    $this->mainView();
+                    break;
 
-                     case 'chercherParDate':
-                         $this->chercherParDate();
-                         break;
+                case 'chercherParDate':
+                    $this->chercherParDate();
+                    break;
 
-                     case 'logout' :
-                         $this->logout();
-                         break;
+                case 'logout' :
+                    $this->logout();
+                    break;
 
 
-                     default:
-                         /*$dVueErreur[] = "erreur apppel php";
-                         require('erreur.php');*/
-                         echo 'erreure form';
-                         break;
+                default:
+                    /*$dVueErreur[] = "erreur apppel php";
+                    require('erreur.php');*/
+                    echo 'erreure form';
+                    break;
 
-                 }
-             }
+            }
+        }
+        Catch(Exception $e){
+        require_once $rep.'vue/Erreur.php';
+        }
+    }
+
+
 
 
 
@@ -172,8 +164,6 @@ class ControlAdmin
             if (! Validation::isValidHtml($desc)){
                $desc=Validation::purify($desc);
             }
-
-
             $titre=Validation::purify($titre);
             $nAuteur=Validation::purify($nAuteur);
             $pAuteur=Validation::purify($pAuteur);

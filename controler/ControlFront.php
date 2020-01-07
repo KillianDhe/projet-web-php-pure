@@ -60,39 +60,3 @@ class ControlFront
     }
 
 }
-
-
-        /*try {
-            switch ($action) {
-                case NULL :
-                case 'publicPage':
-                case 'AjouterCommentaire':
-                    new ControlVisiteur($action);
-                    break;
-                    //TODO put controlVisiteur
-                case 'AjouterArticle':
-                case 'SupprimerArticle':
-                case 'showArticle':
-                case 'modifArticle' :
-                case 'SeConnecter':
-                case 'loginPage' :
-                case 'login':
-                case 'logout':
-                    new ControlAdmin($action);
-                    break;
-
-
-                default:
-                    /*$dVueErreur[] = "erreur apppel php";
-                    require('erreur.php');
-                    echo 'erreure form';
-                    break;
-
-            }
-        }catch (PDOException $exception) {
-            var_dump($exception);
-        }catch (Exception $exception){
-            var_dump($exception);
-        }
-
-    }*/
