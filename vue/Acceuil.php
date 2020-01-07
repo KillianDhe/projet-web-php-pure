@@ -11,7 +11,6 @@ require_once 'pageContent/header.php';
     <body>
 
     <div>
-        <?php echo date("jj/m/Y");    ?>
         <label>Nombre d'Articles : <?php echo $nbArt ?></label><br>
         <?php if(isset($_COOKIE['nbcommentaire'])): ?>
         <label>Nombre de commentaires que vous avez posté : <?php echo ModelGeneral::getnbcommentaire() ?></label>

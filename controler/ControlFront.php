@@ -55,15 +55,13 @@ class ControlFront
             }
         }
         catch(Exception $e){
-            echo "frero la le pb ca vient du front , surement une erreur non ctach quelque part , Aie aie aie";
-            echo $e;
+           require_once "vue/Erreur.php";
         }catch (Exception $exception){
             var_dump($exception);
         }
     }
 
 }
-
 
         /*try {
             switch ($action) {
