@@ -62,8 +62,17 @@ class ControlVisiteur
     public function initView(){
         global $rep;
         $model = new ModelGeneral();
-        $articleList = $model->getAllArticle();
+
         $nbArt=$model->getNbArticle();
+        $nbNewsAfficher=4;
+
+        $page = (isset($_GET['page'])) ? $page = $_GET['page'] : $page = 1;
+        $nbNewsTotal=$model->getNbArticle();
+        $articleList = $model->getLimit(($page - 1)*$nbNewsAfficher, $nbNewsAfficher);
+        $nbPages = ceil($nbNewsTotal/$nbNewsAfficher);
+
+
+
         require_once $rep . 'vue/Acceuil.php';
    }
 
@@ -143,6 +152,7 @@ class ControlVisiteur
 
 
     }
+
 
 
 

@@ -56,12 +56,11 @@ class ControlFront
         }
         catch(Exception $e){
            require_once "vue/Erreur.php";
-        }catch (Exception $exception){
-            var_dump($exception);
         }
     }
 
 }
+
 
         /*try {
             switch ($action) {

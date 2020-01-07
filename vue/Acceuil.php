@@ -43,10 +43,24 @@ require_once 'pageContent/header.php';
                     </form>
                 </div>
             </div>
+
         </div>
+
      </br>
      <?php endforeach;
         endif; ?>
+    <div>
+    <?php if ($nbPages > 1){
+        if ($page > 1){
+            echo '<a class="changerPage" href="?page='.($page - 1).'">Page Précédente </a>';
+        }
+        echo '<a id="numeroPage" href="?page='.($page).'">'.$page.'</a>';
+        if ($page < $nbPages){
+            echo '<a class="changerPage" href="?page='.($page + 1).'"> Page Suivante</a>';
+        }
+    }
+    ?>
+    </div>
     </body>
 
 <?php

@@ -141,8 +141,17 @@ class ModelGeneral
 
     }
 
-    public function getLimit(){
+    public function getLimit($nbNewsPage, $page){
+        $limList =[];
+        global $dsn, $user, $pass;
+        $articleG = new ArticleGateWay(new Connection($dsn,$user,$pass));
+        $result = $articleG->selectLimit($nbNewsPage,$page);
 
+        foreach ( $result as $article){
+            $limList[] =  new Article($article['idArticle'],$article['description'],$article['titre'],$article['date'],$article['prenomA'],$article['nomA']);
+        }
+
+        return $limList;
     }
 
 
