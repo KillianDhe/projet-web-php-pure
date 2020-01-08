@@ -131,7 +131,7 @@ require_once 'pageContent/header.php';
                          <?php endforeach;?>
                     <?php else :
                          if(!isset($articleListRecherche)): ?>
-                             <label>Aucun aricle a cette date pd</label>
+                             <label>Aucun aricle a cette date</label>
                          <?php else :
                             foreach ($articleListRecherche as $article): ?>
                                 <li class="list-group-item"><i><?= $article->getTitre(); ?></i>

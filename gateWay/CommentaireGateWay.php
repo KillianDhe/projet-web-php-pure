@@ -32,16 +32,15 @@ class CommentaireGateWay
 
     public function selectComWithArticleId(int $id){
         $query = "SELECT pseudo, commentaire FROM Commentaire WHERE idArticle = :id ORDER BY idCommentaire desc";
-
-        try{
-
-        $this->connection->executeQuery($query, array(
-            'id' => array($id,PDO::PARAM_INT)));
+        try {
+            $this->connection->executeQuery($query, array(
+                'id' => array($id, PDO::PARAM_INT)));
+             }
+        Catch(Exception $e){
+               throw new Exception("Erreur sql lors de l'insertion du commentaire'");
+             }
 
         return $this->connection->getResults();
-        Catch(Exception $e){
-                throw new Exception("Erreur sql lors de la selection d'un commentaire");
-            }
     }
 
 

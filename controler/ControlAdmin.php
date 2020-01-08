@@ -140,11 +140,8 @@ class ControlAdmin
         $date=$_POST['InDate'];
         $date=Validation::purify($date);
          $m=new ModelGeneral();
-         $articleListRecherche=$m->chercherparDate($date);
+         $articleListRecherche=$m->chercherArticleParDate($date);
          require_once "vue/panelAdmin.php";
-
-
-
         }
 
         private function modifArticle(){

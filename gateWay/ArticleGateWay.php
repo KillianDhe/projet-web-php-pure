@@ -136,4 +136,22 @@ class ArticleGateWay
             throw new Exception("Erreur sql lors de la selection des articles avec limitation");
         }
     }
+
+    public function selectLimitParDate($noPage, $articlePage, $date)
+    {
+
+        $query = "SELECT idArticle, nomA, prenomA, description, titre, date FROM Article WHERE date=:date LIMIT :noPage, :articlePage ";
+
+        try {
+
+            $this->connection->executeQuery($query, array(
+                'noPage' => array($noPage, PDO::PARAM_INT),
+                'articlePage' => array($articlePage, PDO::PARAM_INT),
+                'date' => array($date, PDO::PARAM_STR)
+            ));
+            return $this->connection->getResults();
+        } Catch (Exception $e) {
+            throw new Exception("Erreur sql lors de la selection des articles par date avec limitation");
+        }
+    }
 }

@@ -84,7 +84,7 @@ class ModelGeneral
     public static function getnbcommentaire()
     {
         if(isset($_COOKIE['nbcommentaire']) && ($_COOKIE['nbcommentaire'] >= 0)){
-             return (Validation::nettoyerint($_COOKIE['nbcommentaire']));
+            return (Validation::nettoyerint($_COOKIE['nbcommentaire']));
         }
         else return 0;
     }
@@ -111,7 +111,7 @@ class ModelGeneral
         return $comList;
     }
 
-    public function chercherParDate($date){
+    public function chercherArticleParDate($date){
         global $dsn, $user, $pass;
 
         $articleG = new ArticleGateWay(new Connection($dsn,$user,$pass));
@@ -153,6 +153,31 @@ class ModelGeneral
         return $limList;
     }
 
+    public function getLimitParDate($nbNewsPage, $page,$date){
+        $limList =[];
+        global $dsn, $user, $pass;
+        $articleG = new ArticleGateWay(new Connection($dsn,$user,$pass));
+        $result = $articleG->selectLimitParDate($nbNewsPage,$page,$date);
+
+        foreach ( $result as $article){
+            $limList[] =  new Article($article['idArticle'],$article['description'],$article['titre'],$article['date'],$article['prenomA'],$article['nomA']);
+        }
+
+        return $limList;
+    }
+
+    public function setNbArticleAAfficher($nbNewsAfficher)
+    {
+        $_SESSION['NbArticleAAfficher']=$nbNewsAfficher;
+    }
+
+    public function getNbArticleAAfficher()
+    {
+
+       if(isset($_SESSION['NbArticleAAfficher']) && ($_SESSION['NbArticleAAfficher']>0))
+           return $_SESSION['NbArticleAAfficher'];
+       else return 10;
+    }
 
 
 }

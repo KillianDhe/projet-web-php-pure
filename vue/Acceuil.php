@@ -16,8 +16,37 @@ require_once 'pageContent/header.php';
         <label>Nombre de commentaires que vous avez posté : <?php echo ModelGeneral::getnbcommentaire() ?></label>
         <?php endif; ?>
     </div>
+    <div  class="container-fluid">
+        <div class="row">
+            <div class="card offset-1" style="width: 40rem;">
+                <div class="card-header"><h5>Chercher par date</h5></div>
+                <form class="card-body" method="post">
+
+                    <div class="form-group">
+                        <label>rechercher par date  :</label>
+                        <input class="form-control" type="date" name="InDate">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Rechercher</button>
+                    </div>
+                    <input type="hidden" name="action" value="AcceuilParDate">
+                </form>
+                <form>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Effacer les filtres </button>
+                    </div>
+                    <input type="hidden" name="action" value="publicPage">
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
 
        <?php if(isset($articleList)):
+           if(empty($articleList)):
+               echo "Aucun article ";
+           endif;
         foreach ($articleList as $article): ?>
         <div  class="container-fluid">
             <div class="row">
@@ -49,7 +78,8 @@ require_once 'pageContent/header.php';
      </br>
      <?php endforeach;
         endif; ?>
-    <div>
+
+    <div >
     <?php if ($nbPages > 1){
         if ($page > 1){
             echo '<a class="changerPage" href="?page='.($page - 1).'">Page Précédente </a>';
@@ -61,6 +91,28 @@ require_once 'pageContent/header.php';
     }
     ?>
     </div>
+
+    <div >
+
+        <form class="card-body" method="post">
+
+            <div class="form-group">
+                <label for="msg">Nombre d'article a afficher :</label>
+                <select name="NbArticleAAfficher">
+                    <option value=""><?php $m=new ModelGeneral(); echo $m->getNbArticleAAfficher() ?></option>
+                    <OPTION>5
+                    <OPTION >10
+                    <OPTION>20
+                    <OPTION>30
+                    <OPTION>40
+                    <OPTION>50
+                </select>
+                <button class="btn btn-primary" type="submit">Valider</button>
+            </div>
+            <input type="hidden" name="action" value="setNbArticleAAfficher">
+        </form>
+    </div>
+
     </body>
 
 <?php

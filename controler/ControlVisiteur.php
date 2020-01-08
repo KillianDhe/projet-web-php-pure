@@ -37,6 +37,14 @@ class ControlVisiteur
                     $this->login();
                     break;
 
+                case 'AcceuilParDate':
+                    $this->AcceuilParDate();
+                    break;
+
+                case 'setNbArticleAAfficher';
+                    $this->setNbArticleAAfficher();
+                    break;
+
                 default:
                     /*$dVueErreur[] = "erreur apppel php";
                     require('erreur.php');*/
@@ -58,8 +66,11 @@ class ControlVisiteur
         $model = new ModelGeneral();
 
         $nbArt=$model->getNbArticle();
-        $nbNewsAfficher=4;
 
+
+        $nbNewsAfficher=$model->getNbArticleAAfficher();
+
+        //fais pas le malin
         $page = (isset($_GET['page'])) ? $page = $_GET['page'] : $page = 1;
         $nbNewsTotal=$model->getNbArticle();
         $articleList = $model->getLimit(($page - 1)*$nbNewsAfficher, $nbNewsAfficher);
@@ -147,7 +158,35 @@ class ControlVisiteur
 
     }
 
+    private function AcceuilParDate(){
 
+        global $rep;
+        $model = new ModelGeneral();
+        $nbArt=$model->getNbArticle();
+        $nbNewsAfficher=4;
+        //fais pas le malin
+        $page = (isset($_GET['page'])) ? $page = $_GET['page'] : $page = 1;
+        $nbNewsTotal=$model->getNbArticle();
+
+        $date=$_POST['InDate'];
+        $date=Validation::purify($date);
+        $articleList = $model->getLimitParDate(($page - 1)*$nbNewsAfficher, $nbNewsAfficher,$date);
+        $nbPages = ceil($nbNewsTotal/$nbNewsAfficher);
+        require_once "vue/Acceuil.php";
+    }
+
+    private function setNbArticleAAfficher()
+    {
+        $nbNewsAfficher=$_POST['NbArticleAAfficher'];
+        $nbNewsAfficher=Validation::nettoyerint($nbNewsAfficher);
+
+        $m=new ModelGeneral();
+        $m->setNbArticleAAfficher($nbNewsAfficher);
+
+        header("Refresh:0");
+        /*$this->initView();*/
+
+    }
 
 
 }
