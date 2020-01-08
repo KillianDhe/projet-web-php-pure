@@ -166,12 +166,12 @@ class ModelGeneral
         return $limList;
     }
 
-    public function setNbArticleAAfficher($nbNewsAfficher)
+    public function setNbArticleAAfficher(int $nbNewsAfficher)
     {
         $_SESSION['NbArticleAAfficher']=$nbNewsAfficher;
     }
 
-    public function getNbArticleAAfficher()
+    public static function getNbArticleAAfficher()
     {
 
        if(isset($_SESSION['NbArticleAAfficher']) && ($_SESSION['NbArticleAAfficher']>0))
@@ -179,5 +179,11 @@ class ModelGeneral
        else return 10;
     }
 
+    public static function getPseudoCommentaire(){
 
+        if(isset($_SESSION['pseudoComm']))
+            return $_SESSION['pseudoComm'];
+        return "";
+
+}
 }

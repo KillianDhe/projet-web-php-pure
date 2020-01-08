@@ -3,7 +3,7 @@ require_once 'pageContent/header.php';
 ?>
 <body>
 
-<?php if(!empty($article)):?>
+<?php if(isset($article)):?>
     <div  class="container-fluid">
                 <h5><?=$article->getTitre();?></h5>
 
@@ -26,7 +26,7 @@ require_once 'pageContent/header.php';
         <div class="container-fluid">
             <div class="form-group col-md">
                 <div class="card border-dark"><br>
-                    <input class="form-control" type="text" value="<?php if(isset($_SESSION['pseudoComm'])):echo $_SESSION['pseudoComm']; endif;?>" name="InPseudo" placeholder="Pseudo"><br>
+                    <input class="form-control" type="text" value="<?php ModelGeneral::getPseudoCommentaire() ;?>" name="InPseudo" placeholder="Pseudo"><br>
                     <textarea class="form-control" type="" name="InCommentaire" placeholder="Commentaire"></textarea><br>
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Commenter</button>
@@ -40,7 +40,7 @@ require_once 'pageContent/header.php';
 
     </form>
     <ul class="list-group list-group-flush">
-        <?php if(!empty($comList)):?>
+        <?php if(isset($comList)):?>
         <?php foreach ($comList as $com): ?>
             <li class="list-group-item"><i><h5><?= $com->getPseudo(); ?></h5><br>    <?= $com->getCommentaire();?></i></li>
         <?php endforeach;

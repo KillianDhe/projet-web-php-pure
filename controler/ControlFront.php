@@ -13,7 +13,7 @@ class ControlFront
     public function __construct()
     {
 
-        //suppression du cookie avec l'id de session a la fermeture du navigateur
+      //suppression du cookie avec l'id de session a la fermeture du navigateur
         ini_set("session.cookie_lifetime",0);
         //empeche les injections javascript
         ini_set("session.cookie_httponly","On");

@@ -82,7 +82,7 @@ class ControlVisiteur
    }
 
     public function loginPage(){
-        if($_SESSION!=null){
+        if( isset($_SESSION['login']) && $_SESSION['login']!=null){
             throw new Exception("vous etes déjà connecté");
         }
         global $rep;
@@ -91,7 +91,7 @@ class ControlVisiteur
 
     public function login()
     {
-        if($_SESSION!=null){
+        if( isset($_SESSION['login']) && $_SESSION['login']!=null){
             throw new Exception("vous etes déjà connecté");
         }
 
@@ -163,8 +163,8 @@ class ControlVisiteur
         global $rep;
         $model = new ModelGeneral();
         $nbArt=$model->getNbArticle();
-        $nbNewsAfficher=4;
-        //fais pas le malin
+        $nbNewsAfficher=$model->getNbArticleAAfficher();
+
         $page = (isset($_GET['page'])) ? $page = $_GET['page'] : $page = 1;
         $nbNewsTotal=$model->getNbArticle();
 
@@ -184,7 +184,7 @@ class ControlVisiteur
         $m->setNbArticleAAfficher($nbNewsAfficher);
 
         header("Refresh:0");
-        /*$this->initView();*/
+        //$this->initView();
 
     }
 

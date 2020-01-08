@@ -11,8 +11,10 @@ require_once 'pageContent/header.php';
     <body>
 
     <div>
+        <?php if(isset($nbArt)): ?>
         <label>Nombre d'Articles : <?php echo $nbArt ?></label><br>
-        <?php if(isset($_COOKIE['nbcommentaire'])): ?>
+        <?php endif;
+         if(ModelGeneral::getnbcommentaire()>0): ?>
         <label>Nombre de commentaires que vous avez posté : <?php echo ModelGeneral::getnbcommentaire() ?></label>
         <?php endif; ?>
     </div>
@@ -80,7 +82,8 @@ require_once 'pageContent/header.php';
         endif; ?>
 
     <div >
-    <?php if ($nbPages > 1){
+        <?php if (isset($nbPages) && isset($page)):
+         if ($nbPages > 1){
         if ($page > 1){
             echo '<a class="changerPage" href="?page='.($page - 1).'">Page Précédente </a>';
         }
@@ -89,7 +92,7 @@ require_once 'pageContent/header.php';
             echo '<a class="changerPage" href="?page='.($page + 1).'"> Page Suivante</a>';
         }
     }
-    ?>
+        endif; ?>
     </div>
 
     <div >
@@ -99,7 +102,7 @@ require_once 'pageContent/header.php';
             <div class="form-group">
                 <label for="msg">Nombre d'article a afficher :</label>
                 <select name="NbArticleAAfficher">
-                    <option value=""><?php $m=new ModelGeneral(); echo $m->getNbArticleAAfficher() ?></option>
+                    <option value=""><?php echo ModelGeneral::getNbArticleAAfficher() ?></option>
                     <OPTION>5
                     <OPTION >10
                     <OPTION>20

@@ -123,7 +123,7 @@ class ArticleGateWay
     }
 
     public function selectLimit($noPage, $articlePage){
-        $query =  "SELECT idArticle, nomA, prenomA, description, titre, date FROM Article LIMIT :noPage, :articlePage";
+        $query =  "SELECT idArticle, nomA, prenomA, description, titre, date FROM Article order by date desc LIMIT :noPage, :articlePage";
 
         try{
 
