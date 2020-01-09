@@ -78,7 +78,7 @@ class ModelGeneral
         if(isset($_COOKIE['pseudo'])){
             return (Validation::purify($_COOKIE['pseudo']));
         }
-        return "";
+        else return "";
     }
 
     public static function getnbcommentaire()
@@ -182,8 +182,8 @@ class ModelGeneral
     public static function getPseudoCommentaire(){
 
         if(isset($_SESSION['pseudoComm']))
-            return $_SESSION['pseudoComm'];
-        return "";
+            return Validation::purify($_SESSION['pseudoComm']);
+        else return "";
 
 }
 }

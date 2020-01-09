@@ -5,7 +5,7 @@
 
         <ul class="navbar-nav ml-auto">
 
-            <?php if($_SESSION==null):?>
+            <?php if(!isset($_SESSION['login']) || $_SESSION['login']==null):?>
                 <li class="nav-item">
                 <a  class="fas fa-sign-in-alt nav-link" style="font-size: 30px;" href="?action=loginPage" title="Se connecter"></a>
             </li>
