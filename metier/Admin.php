@@ -19,7 +19,7 @@ class Admin
      */
     public function __construct($pseudo,$motDePasse, $nom, $prenom, $email)
     {
-        parent::__construct($pseudo,NULL);
+
         $this->motDePasse = $motDePasse;
         $this->nom = $nom;
         $this->prenom = $prenom;
