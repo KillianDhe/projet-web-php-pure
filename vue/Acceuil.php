@@ -102,7 +102,7 @@ require_once 'pageContent/header.php';
             <div class="form-group">
                 <label for="msg">Nombre d'article a afficher :</label>
                 <select name="NbArticleAAfficher">
-                    <option value=""><?php echo ModelGeneral::getNbArticleAAfficher() ?></option>
+                    <option value="<?php echo ModelGeneral::getNbArticleAAfficher() ?>"><?php echo ModelGeneral::getNbArticleAAfficher() ?></option>
                     <OPTION>5
                     <OPTION >10
                     <OPTION>20

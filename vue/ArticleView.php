@@ -42,7 +42,7 @@ require_once 'pageContent/header.php';
     <ul class="list-group list-group-flush">
         <?php if(isset($comList)):?>
         <?php foreach ($comList as $com): ?>
-            <li class="list-group-item"><i><h5><?= $com->getPseudo(); ?></h5><br>    <?= $com->getCommentaire();?></i></li>
+            <li class="list-group-item"><i><h5><?= $com->getPseudo(); ?></h5><br>    <?= nl2br($com->getCommentaire());?></i></li>
         <?php endforeach;
         else :
             echo "Soyez le premier a commenter cet article !";
