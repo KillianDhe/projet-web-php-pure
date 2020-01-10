@@ -23,8 +23,11 @@ class ControlFront
         ini_set("session.cookie_secure","On");
         //supprime la possibilité d'injection et de fuites d'id de session.
         ini_set("session.use_trans_sid","Off");
+        //le contenu de l'identification de session n'est pas mis en cache
         ini_set("session.cache_limiter","nocache");
+        //utilise la fonction sha256 pour generer les id de session , evite les eventuels collisions de md5
         ini_set("session.hash_function","sha256");
+        //ON utilise uniquement les cookies pour la gestion de l'ID de session
         ini_set("session.use_cookies","On");
         ini_set("session.use_only_cookies","On");
 

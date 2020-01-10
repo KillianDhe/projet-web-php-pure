@@ -175,7 +175,7 @@ class ModelGeneral
     {
 
        if(isset($_SESSION['NbArticleAAfficher']) && ($_SESSION['NbArticleAAfficher']>0))
-           return $_SESSION['NbArticleAAfficher'];
+           return Validation::nettoyerint($_SESSION['NbArticleAAfficher']);
        else return 10;
     }
 

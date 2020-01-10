@@ -70,11 +70,21 @@ class ControlVisiteur
 
         $nbNewsAfficher=$model->getNbArticleAAfficher();
 
-        //fais pas le malin
-        $page = (isset($_GET['page'])) ? $page = $_GET['page'] : $page = 1;
+
         $nbNewsTotal=$model->getNbArticle();
-        $articleList = $model->getLimit(($page - 1)*$nbNewsAfficher, $nbNewsAfficher);
         $nbPages = ceil($nbNewsTotal/$nbNewsAfficher);
+
+        //fais pas le malin
+        if(isset($_GET['page'])){
+            $page = $_GET['page'];
+            if($page>$nbPages)
+            {
+                $page=$nbPages;
+            }
+        }
+        else
+            $page = 1;
+        $articleList = $model->getLimit(($page - 1)*$nbNewsAfficher, $nbNewsAfficher);
 
 
 
