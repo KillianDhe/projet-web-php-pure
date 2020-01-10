@@ -5,14 +5,15 @@ require_once 'pageContent/header.php';
 
 <?php if(isset($article)):?>
     <div  class="container-fluid">
-                <h5><?=$article->getTitre();?></h5>
+        <h5> <strong><?=$article->getTitre();?></strong></h5>
 
     </div>
 
     <div class="container-fluid">
-        <?php  echo nl2br($article->getTexte());?><br>
         <label><strong>Auteur :</strong><?=$article->getPrenomAuteur()." ".$article->getNomAuteur();?></label> <br>
-        <label><strong>Date de parution :</strong><?=$article->getDate();?></label>
+        <label><strong>Date de parution :</strong><?=$article->getDate();?></label><br>
+
+        <?php  echo nl2br($article->getTexte());?><br>
 
     </div>
 
@@ -42,7 +43,7 @@ require_once 'pageContent/header.php';
     <ul class="list-group list-group-flush">
         <?php if(isset($comList)):?>
         <?php foreach ($comList as $com): ?>
-            <li class="list-group-item"><i><h5><?= $com->getPseudo(); ?></h5><br>    <?= nl2br($com->getCommentaire());?></i></li>
+            <li class="list-group-item"><i><h5><?= $com->getPseudo(); ?></h5><br>    <?= nl2br($com->getCommentaire())  ;?></i></li>
         <?php endforeach;
         else :
             echo "Soyez le premier a commenter cet article !";
